@@ -2,16 +2,16 @@
 /**
  * Main Icon Grid It! plugin file
  *
- * Set up autoload and instantiate the main Icon Grid It! class and constants
+ * Set up autoload and instantiate the required classes and constants
  *
- * @link    https://websitesbuiltforyou.com/wordpress/icon-grid-it-simple-iconised-feature-grids
- * @package Icon Grid It! Simple Iconised Feature Grids
+ * @link    https://websitesbuiltforyou.com/wordpress/icon-grid-it-icon-feature-grids-plugin-for-wordpress
+ * @package Icon Grid It! Icon Feature Grids Plugin For WordPress
  */
 
 /**
  * Plugin Name: Icon Grid It!
- * Plugin URI: https://websitesbuiltforyou.com/wordpress/icon-grid-it-simple-iconised-feature-grids
- * Description: Display simple iconised feature grids in WordPress
+ * Plugin URI: https://websitesbuiltforyou.com/wordpress/icon-grid-it-icon-feature-grids-plugin-for-wordpress
+ * Description: Display icon feature grids
  * Author: Websites Built For You
  * Author URI: https://websitesbuiltforyou.com
  * Version: 1.0.0
@@ -20,16 +20,16 @@
  * Text Domain: wbfy-icon-grid-it
  * Domain Path: /resources/languages
  *
- * Icon Grid It! Simple Iconised Feature Grids And Lists is free software: you can redistribute it and/or modify it
+ * Icon Grid It! Icon Feature Grids Plugin For WordPress is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 2 of the License, or any later version.
  *
- * Icon Grid It! Simple Iconised Feature Grids And Lists is distributed in the hope that it will be useful, but WITHOUT
+ * Icon Grid It! Icon Feature Grids Plugin For WordPress is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
  * PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * Icon Grid It! Simple Iconised Feature Grids And Lists. If not, see https://www.gnu.org/licenses.
+ * Icon Grid It! Icon Feature Grids Plugin For WordPress. If not, see https://www.gnu.org/licenses.
  */
 
 if (!defined('ABSPATH')) {
