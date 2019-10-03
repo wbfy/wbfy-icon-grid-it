@@ -2,7 +2,7 @@
 /**
  * Icon Grid It! Admin options handler
  */
-class wbfy_gli_Options
+class wbfy_igi_Options
 {
     public $settings = null;
 
@@ -32,7 +32,7 @@ class wbfy_gli_Options
         $this->getDefaults();
         $settings = get_option('wbfy_gli');
         if (is_array($settings)) {
-            $this->settings = wbfy_gli_Libs_Arrays::extend(
+            $this->settings = wbfy_igi_Libs_Arrays::extend(
                 $this->settings,
                 $settings
             );
@@ -64,9 +64,6 @@ class wbfy_gli_Options
     public function getDefaults()
     {
         $this->settings = array(
-            'styles'      => array(
-                'icon' => 'background-color:transparent;color:rgba(237,145,7,1);font-size:3rem',
-            ),
             'config_data' => array(
                 'on_deactivate' => 0,
                 'on_delete'     => 1,

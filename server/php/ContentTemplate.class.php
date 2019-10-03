@@ -3,7 +3,7 @@
  * Icon Grid It! Content template
  * used by both widget and shortcode
  */
-class wbfy_gli_ContentTemplate
+class wbfy_igi_ContentTemplate
 {
     /**
      * @param return blank list grid content
@@ -12,8 +12,9 @@ class wbfy_gli_ContentTemplate
     {
         $content                = array();
         $content['title']       = '';
-        $content['title_align'] = 'left';
-        for ($i = 1; $i <= WBFI_IGLI_MAX_ITEMS; $i++) {
+        $content['title_align'] = 'center';
+        $content['icon_color']  = WBFY_DEFAULT_ICON_COLOR;
+        for ($i = 1; $i <= WBFY_IGI_MAX_ITEMS; $i++) {
             $content['item' . $i . '_icon'] = '';
             $content['item' . $i . '_text'] = '';
         }

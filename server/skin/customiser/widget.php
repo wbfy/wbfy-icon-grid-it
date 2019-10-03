@@ -24,14 +24,25 @@
         </option>
     </select>
 </div>
+<p>
+    <label for="<?php echo $data['widget']->get_field_id('icon_color' . $i); ?>"><?php _e('Icon Color:', 'wbfy-icon-grid-it');?></label>
+    <input
+        type="text"
+        class="wbfy-color-picker"
+        id="<?php echo $data['widget']->get_field_id('icon_color'); ?>"
+        name="<?php echo $data['widget']->get_field_name('icon_color'); ?>"
+        data-default-color="<?php echo esc_attr($data['content']['icon_color']); ?>"
+        value="<?php echo esc_attr($data['content']['icon_color']); ?>"
+    >
+</p>
 <?php
-for ($i = 1; $i <= WBFI_IGLI_MAX_ITEMS; $i++) {
+for ($i = 1; $i <= WBFY_IGI_MAX_ITEMS; $i++) {
     ?>
 <p>
     <label for="<?php echo $data['widget']->get_field_id('item' . $i); ?>"><?php _e('Item ' . $i . ':', 'wbfy-icon-grid-it');?></label>
     <input
         type="text"
-        placeholder="<?php _e('Icon name', 'wbfy-icon-grid-it');?>"
+        placeholder="<?php _e('Icon', 'wbfy-icon-grid-it');?>"
         id="<?php echo $data['widget']->get_field_id('item' . $i . '_icon'); ?>"
         name="<?php echo $data['widget']->get_field_name('item' . $i . '_icon'); ?>"
         value="<?php echo esc_attr($data['content']['item' . $i . '_icon']); ?>"
@@ -40,7 +51,7 @@ for ($i = 1; $i <= WBFI_IGLI_MAX_ITEMS; $i++) {
 <div>
     <input
         type="text"
-        placeholder="<?php _e('Description', 'wbfy-icon-grid-it');?>"
+        placeholder="<?php _e('Text', 'wbfy-icon-grid-it');?>"
         id="<?php echo $data['widget']->get_field_id('item' . $i . '_text'); ?>"
         name="<?php echo $data['widget']->get_field_name('item' . $i . '_text'); ?>"
         value="<?php echo esc_attr($data['content']['item' . $i . '_text']); ?>"
@@ -49,3 +60,25 @@ for ($i = 1; $i <= WBFI_IGLI_MAX_ITEMS; $i++) {
 <?php
 }
 ?>
+<!-- initialise color picker -->
+<script>
+(
+    function($, id)
+    {
+        $('#'+id).wpColorPicker(
+            {
+                change: function()
+                {
+                    setTimeout(
+                        function()
+                        {
+                            $('#'+id).trigger('change');
+                        },
+                        500
+                    );
+                }
+            }
+        );
+    }
+)(jQuery, <?php echo "'" . $data['widget']->get_field_id('icon_color') . "'"; ?>);
+</script>

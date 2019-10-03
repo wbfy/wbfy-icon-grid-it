@@ -1,0 +1,14 @@
+/* intentionally empty but could add extra css overrides for block editor here */
+.wbfy-grid
+{
+    ul
+    {
+        li
+        {
+            .wbfy-grid-icon
+            {
+                margin-bottom:0 !important;
+            }
+        }
+    }
+}

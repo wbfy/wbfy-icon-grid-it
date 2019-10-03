@@ -9,8 +9,8 @@
 	</h1>
 	<form method="post" action="options.php" name="wbfy-icon-grid-it-admin" class="wbfy-icon-grid-it-admin">
 <?php
-settings_fields('wbfy_gli_options');
-do_settings_sections('wbfy_gli_options');
+settings_fields('wbfy_igi_options');
+do_settings_sections('wbfy_igi_options');
 submit_button();
 ?>
 	</form>

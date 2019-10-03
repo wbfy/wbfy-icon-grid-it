@@ -2,23 +2,33 @@
 /**
  * Main plugin loader
  */
-class wbfy_gli_Main
+class wbfy_igi_Main
 {
     /**
      * Initialise plugin and menus
      */
     public function __construct()
     {
-        register_activation_hook(WBFY_GLI_PLUGIN_DIR . '/wbfy-icon-grid-it.php', array($this, 'activate'));
-        register_deactivation_hook(WBFY_GLI_PLUGIN_DIR . '/wbfy-icon-grid-it.php', array($this, 'deactivate'));
+        // Add activate/deactivate handlers
+        register_activation_hook(WBFY_IGI_PLUGIN_DIR . '/wbfy-icon-grid-it.php', array($this, 'activate'));
+        register_deactivation_hook(WBFY_IGI_PLUGIN_DIR . '/wbfy-icon-grid-it.php', array($this, 'deactivate'));
 
-        // Icon Grid It! admin init
-        add_action('admin_init', array(new wbfy_gli_Admin, 'init'));
-        add_action('admin_menu', array(new wbfy_gli_Admin, 'addToMenu'));
+        // Add admin handler
+        add_action('admin_init', array(new wbfy_igi_Admin, 'init'));
+        add_action('admin_menu', array(new wbfy_igi_Admin, 'addToMenu'));
 
-        // Icon Grid It! set options
-        add_action('init', array(new wbfy_gli_Shortcodes, 'init'));
-        add_action('widgets_init', array(new wbfy_gli_Widget, 'init'));
+        // Add shortcode handler
+        add_action('init', array(new wbfy_igi_Shortcodes, 'init'));
+
+        // Enqueue Gutenberg editor only assets
+        add_action('enqueue_block_editor_assets', array(new wbfy_igi_Block, 'adminInit'));
+        // Enqueue Gutenberg editor and front end assets
+        add_action('enqueue_block_assets', array(new wbfy_igi_Block, 'frontendInit'));
+
+        // Add customiser widget handler
+        add_action('widgets_init', array(new wbfy_igi_Widget, 'init'));
+
+        // Load translations
         add_action('plugins_loaded', array($this, 'loadI18N'));
     }
 
@@ -35,7 +45,7 @@ class wbfy_gli_Main
      */
     public function activate()
     {
-        wbfy_gli_Options::getInstance()->init();
+        wbfy_igi_Options::getInstance()->init();
     }
 
     /**
@@ -43,7 +53,7 @@ class wbfy_gli_Main
      */
     public function deactivate()
     {
-        $options = wbfy_gli_Options::getInstance();
+        $options = wbfy_igi_Options::getInstance();
         if (!isset($options->settings['config_data']['on_deactivate']) || $options->settings['config_data']['on_deactivate']) {
             $options->drop();
         }

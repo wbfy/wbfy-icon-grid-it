@@ -1,5 +1,5 @@
 <?php
-class wbfy_gli_Admin
+class wbfy_igi_Admin
 {
     /**
      * Initialise Icon Grid It! options page
@@ -8,7 +8,7 @@ class wbfy_gli_Admin
     public function init()
     {
         register_setting(
-            'wbfy_gli_options', // Option group.
+            'wbfy_igi_options', // Option group.
             'wbfy_gli', // Option name (in wp_options)
             array($this, 'validate') // Sanitation callback
         );
@@ -55,69 +55,28 @@ class wbfy_gli_Admin
      */
     private function registerForm()
     {
-        // Update styles section
-        add_settings_section(
-            'wbfy_gli_styles', // ID
-            __('Styles', 'wbfy-icon-grid-it'), // Section name
-            array($this, 'sectionStyles'), // Title HTML callback
-            'wbfy_gli_options' // register_setting::option group NOT page slug!
-        );
-
-        add_settings_field(
-            'wbfy_gli_styles_icon', // id
-            'Icon', // label
-            array($this, 'fieldStylesIcon'), // Field HTML callback
-            'wbfy_gli_options', // register_setting::option group NOT page slug!
-            'wbfy_gli_styles' // section ID
-        );
-
         // Config data settings fields
         add_settings_section(
-            'wbfy_gli_config_data',
+            'wbfy_igi_config_data',
             __('Configuration Data', 'wbfy-icon-grid-it'),
             array($this, 'sectionConfigData'),
-            'wbfy_gli_options'
+            'wbfy_igi_options'
         );
 
         add_settings_field(
-            'wbfy_gli_config_data_on_deactivate',
+            'wbfy_igi_config_data_on_deactivate',
             __('Deactivated', 'wbfy-icon-grid-it'),
             array($this, 'fieldConfigDataOnDeactivate'),
-            'wbfy_gli_options',
-            'wbfy_gli_config_data'
+            'wbfy_igi_options',
+            'wbfy_igi_config_data'
         );
 
         add_settings_field(
-            'wbfy_gli_config_data_on_delete',
+            'wbfy_igi_config_data_on_delete',
             __('Deleted', 'wbfy-icon-grid-it'),
             array($this, 'fieldConfigDataOnDelete'),
-            'wbfy_gli_options',
-            'wbfy_gli_config_data'
-        );
-    }
-
-    /**
-     * Modify styles section
-     */
-    public function sectionStyles()
-    {
-        echo '<p>' . __('You can modify the CSS styles used for some elements:', 'wbfy-icon-grid-it') . '</p>';
-    }
-
-    /**
-     * Icon CSS styling
-     */
-    public function fieldStylesIcon()
-    {
-        $options = wbfy_gli_Options::getInstance();
-        echo wbfy_gli_Libs_Html_Inputs::inputText(
-            array(
-                'id'        => 'wbfy_gli_styles_icon',
-                'name'      => 'wbfy_gli[styles][icon]',
-                'maxlength' => '500',
-                'class'     => 'wbfy-admin-wide-input',
-                'value'     => $options->settings['styles']['icon'],
-            )
+            'wbfy_igi_options',
+            'wbfy_igi_config_data'
         );
     }
 
@@ -134,10 +93,10 @@ class wbfy_gli_Admin
      */
     public function fieldConfigDataOnDeactivate()
     {
-        $options = wbfy_gli_Options::getInstance();
-        echo wbfy_gli_Libs_Html_Inputs::inputCheck(
+        $options = wbfy_igi_Options::getInstance();
+        echo wbfy_igi_Libs_Html_Inputs::inputCheck(
             array(
-                'id'    => 'wbfy_gli_config_data_on_deactivate',
+                'id'    => 'wbfy_igi_config_data_on_deactivate',
                 'name'  => 'wbfy_gli[config_data][on_deactivate]',
                 'value' => $options->settings['config_data']['on_deactivate'],
             )
@@ -149,10 +108,10 @@ class wbfy_gli_Admin
      */
     public function fieldConfigDataOnDelete()
     {
-        $options = wbfy_gli_Options::getInstance();
-        echo wbfy_gli_Libs_Html_Inputs::inputCheck(
+        $options = wbfy_igi_Options::getInstance();
+        echo wbfy_igi_Libs_Html_Inputs::inputCheck(
             array(
-                'id'    => 'wbfy_gli_config_data_on_delete',
+                'id'    => 'wbfy_igi_config_data_on_delete',
                 'name'  => 'wbfy_gli[config_data][on_delete]',
                 'value' => $options->settings['config_data']['on_delete'],
             )
@@ -178,11 +137,16 @@ class wbfy_gli_Admin
             wp_die(__('You do not have sufficient permissions to access this page.', 'wbfy-icon-grid-it'));
         }
 
-        wp_enqueue_style('wbfy-icon-grid-it-css', plugins_url('/wbfy-icon-grid-it/resources/css/wbfy-icon-grid-it.min.css'), false, WBFY_GLI_VERSION);
+        wp_enqueue_style(
+            'wbfy-icon-grid-it-css',
+            plugins_url('/wbfy-icon-grid-it/resources/css/wbfy-icon-grid-it-admin.min.css'),
+            false,
+            WBFY_IGI_VERSION
+        );
 
-        echo wbfy_gli_Libs_WordPress_Functions::render(
+        echo wbfy_igi_Libs_WordPress_Functions::render(
             'skin/admin.php',
-            wbfy_gli_Options::getInstance()->settings
+            wbfy_igi_Options::getInstance()->settings
         );
     }
 }

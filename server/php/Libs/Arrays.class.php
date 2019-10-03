@@ -2,7 +2,7 @@
 /**
  * General array function library
  */
-class wbfy_gli_Libs_Arrays
+class wbfy_igi_Libs_Arrays
 {
     /**
      * Recursively merge multiple arrays

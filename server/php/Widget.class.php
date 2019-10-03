@@ -1,9 +1,9 @@
 <?php
 /**
- * Icon Grid It! widget handler
- * extends WP_Widget
+ * Icon Grid It!
+ * Customiser widget handler
  */
-class wbfy_gli_Widget extends WP_Widget
+class wbfy_igi_Widget extends WP_Widget
 {
     private $content = [];
 
@@ -13,10 +13,10 @@ class wbfy_gli_Widget extends WP_Widget
     public function __construct()
     {
         parent::__construct(
-            'wbfy_gli_icon_grid_list_it', // Base ID
+            'wbfy_igi_icon_grid_list_it', // Base ID
             __('Icon Grid It!', 'wbfy-icon-grid-it'), // Widget name in UI
             array(
-                'description' => __('Add an icon grid or list', 'wbfy-icon-grid-it'), // Description in UI
+                'description' => __('Add an icon feature grid', 'wbfy-icon-grid-it'), // Description in UI
             )
         );
     }
@@ -27,6 +27,7 @@ class wbfy_gli_Widget extends WP_Widget
     public function init()
     {
         register_widget($this);
+        wbfy_igi_Libs_WordPress_Functions::enqueueColorPicker();
     }
 
     /**
@@ -38,9 +39,9 @@ class wbfy_gli_Widget extends WP_Widget
     public function widget($args, $instance)
     {
         if (empty($instance)) {
-            $instance = wbfy_gli_ContentTemplate::get($instance);
+            $instance = wbfy_igi_ContentTemplate::get($instance);
         }
-        echo wbfy_gli_Content::displayGrid($instance);
+        echo wbfy_igi_Content::displayGrid($instance);
     }
 
     /**
@@ -50,10 +51,10 @@ class wbfy_gli_Widget extends WP_Widget
      */
     public function form($instance)
     {
-        echo wbfy_gli_Libs_WordPress_Functions::render(
+        echo wbfy_igi_Libs_WordPress_Functions::render(
             'skin/customiser/widget.php',
             array(
-                'options' => wbfy_gli_Options::getInstance()->settings,
+                'options' => wbfy_igi_Options::getInstance()->settings,
                 'content' => $instance,
                 'widget'  => $this,
             )
@@ -68,12 +69,14 @@ class wbfy_gli_Widget extends WP_Widget
      */
     public function update($new_instance, $old_instance)
     {
-        $instance                = wbfy_gli_ContentTemplate::get($instance);
-        $instance['title']       = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
-        $instance['title_align'] = (!empty($new_instance['title_align'])) ? strip_tags($new_instance['title_align']) : 'left';
-        for ($i = 1; $i <= WBFI_IGLI_MAX_ITEMS; $i++) {
-            $instance['item' . $i . '_icon'] = (!empty($new_instance['item' . $i . '_icon'])) ? strip_tags($new_instance['item' . $i . '_icon']) : '';
-            $instance['item' . $i . '_text'] = (!empty($new_instance['item' . $i . '_text'])) ? strip_tags($new_instance['item' . $i . '_text']) : '';
+        $instance                = wbfy_igi_ContentTemplate::get($instance);
+        $instance['title']       = (isset($new_instance['title'])) ? sanitise_text_field($new_instance['title']) : '';
+        $instance['title_align'] = (isset($new_instance['title_align'])) ? wbfy_igi_Libs_Sanitise::align($new_instance['title_align']) : '';
+        $instance['icon_color']  = (isset($new_instance['icon_color'])) ? wbfy_igi_Libs_Sanitise::colorHex($new_instance['icon_color'], WBFY_DEFAULT_ICON_COLOR) : '';
+
+        for ($i = 1; $i <= WBFY_IGI_MAX_ITEMS; $i++) {
+            $instance['item' . $i . '_icon'] = (isset($new_instance['item' . $i . '_icon'])) ? sanitise_html_class($new_instance['item' . $i . '_icon']) : '';
+            $instance['item' . $i . '_text'] = (isset($new_instance['item' . $i . '_text'])) ? sanitise_text_field($new_instance['item' . $i . '_text']) : '';
         }
         return $instance;
     }

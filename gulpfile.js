@@ -1,5 +1,5 @@
 /**
- * Simple Squash It! Gulp project builder
+ * Gulp project builder
  */
 var gulp = require('gulp'),
 	concat = require('gulp-concat'),
@@ -14,15 +14,26 @@ gulp.task
 	(
 		'compile.plugin',
 		function (doneCallBack) {
-			// gulp.src(['client/js/*.js'])
-			// 	.pipe(concat('wbfy-squash-it.min.js'))
-			// 	.pipe(uglify())
-			// 	.pipe(gulp.dest('resources/js'));
+			gulp.src(['client/js/*.js'])
+				.pipe(concat('wbfy-icon-grid-it-block.min.js'))
+				.pipe(uglify())
+				.pipe(gulp.dest('resources/js'));
 
-			gulp.src(['client/scss/main.scss'])
-				.pipe(concat('wbfy-icon-grid-it.min.css'))
+			gulp.src(['client/scss/admin.scss'])
+				.pipe(concat('wbfy-icon-grid-it-admin.min.css'))
 				.pipe(sass({ outputStyle: 'compressed', includePaths: ['client/scss'] }))
 				.pipe(gulp.dest('resources/css'));
+
+			gulp.src(['client/scss/block-editor.scss'])
+				.pipe(concat('wbfy-icon-grid-it-block-editor.min.css'))
+				.pipe(sass({ outputStyle: 'compressed', includePaths: ['client/scss'] }))
+				.pipe(gulp.dest('resources/css'));
+
+			gulp.src(['client/scss/frontend.scss'])
+				.pipe(concat('wbfy-icon-grid-it-frontend.min.css'))
+				.pipe(sass({ outputStyle: 'compressed', includePaths: ['client/scss'] }))
+				.pipe(gulp.dest('resources/css'));
+
 			doneCallBack();
 		}
 	);

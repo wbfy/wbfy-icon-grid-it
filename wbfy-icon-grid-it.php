@@ -14,7 +14,7 @@
  * Description: Display feature grids with icons
  * Author: Websites Built For You
  * Author URI: https://websitesbuiltforyou.com
- * Version: 1.0.0
+ * Version: 1.1.0
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses
  * Text Domain: wbfy-icon-grid-it
@@ -36,13 +36,14 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!class_exists('wbfy_gli_Main')) {
-    define('WBFY_GLI_VERSION', '1.0.0');
-    define('WBFY_GLI_PLUGIN_DIR', plugin_dir_path(__FILE__));
-    define('WBFI_IGLI_MAX_ITEMS', 10);
+if (!class_exists('wbfy_igi_Main')) {
+    define('WBFY_IGI_VERSION', '1.1.0');
+    define('WBFY_IGI_PLUGIN_DIR', plugin_dir_path(__FILE__));
+    define('WBFY_IGI_MAX_ITEMS', 15);
+    define('WBFY_DEFAULT_ICON_COLOR', '#ffa500'); // Orange
 
     include 'server/php/Autoloader.class.php';
-    wbfy_gli_Autoloader::register();
+    wbfy_igi_Autoloader::register();
 
-    $wbfy_gli = new wbfy_gli_Main;
+    $wbfy_gli = new wbfy_igi_Main;
 }

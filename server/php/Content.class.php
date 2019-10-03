@@ -1,9 +1,10 @@
 <?php
 /**
- * Icon Grid It! Output frontend plugin content
- * used for widgets and shortcodes
+ * Icon Grid It!
+ * Output frontend plugin content
+ * Shared by widgets and shortcodes
  */
-class wbfy_gli_Content
+class wbfy_igi_Content
 {
     /**
      * Display icon grid
@@ -12,13 +13,18 @@ class wbfy_gli_Content
      */
     public static function displayGrid($instance)
     {
-        // Load icon font
-        wp_enqueue_style('wbfy-icon-font', plugins_url('/wbfy-icon-grid-it/resources/fonts/wbfy-icon-font/styles.css'), false, WBFY_GLI_VERSION);
-        wp_enqueue_style('wbfy-grid', plugins_url('/wbfy-icon-grid-it/resources/css/wbfy-icon-grid-it.min.css'), false, WBFY_GLI_VERSION);
-        return wbfy_gli_Libs_WordPress_Functions::render(
+        wp_enqueue_style(
+            'wbfy-grid',
+            plugins_url('/wbfy-icon-grid-it/resources/css/wbfy-icon-grid-it-frontend.min.css'),
+            false,
+            WBFY_IGI_VERSION
+        );
+        wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css');
+
+        return wbfy_igi_Libs_WordPress_Functions::render(
             'skin/grid.php',
             array(
-                'options' => wbfy_gli_Options::getInstance()->settings,
+                'options' => wbfy_igi_Options::getInstance()->settings,
                 'content' => $instance,
             )
         );

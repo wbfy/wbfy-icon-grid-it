@@ -1,5 +1,5 @@
 <?php
-class wbfy_gli_Libs_Html_Inputs
+class wbfy_igi_Libs_Html_Inputs
 {
     public static function selectRange($min, $max, $attrs = array(), $inc = 1)
     {
