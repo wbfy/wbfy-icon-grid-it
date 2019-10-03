@@ -66,7 +66,7 @@ class wbfy_igi_Admin
         add_settings_field(
             'wbfy_igi_cdn_link',
             esc_html__('Link', 'wbfy-icon-grid-it'),
-            array($this, 'fieldsCDNLink'),
+            array($this, 'fieldCDNLink'),
             'wbfy_igi_options',
             'wbfy_igi_cdn'
         );
@@ -101,13 +101,14 @@ class wbfy_igi_Admin
      */
     public function sectionCDN()
     {
-        $
-        $html = __('Icon Grid It! will download the icon font it uses from a content delivery network.') . ' ';
-        $html .= __('You can change the link used below.', 'wbfy-icon-grid-it') . ' ';
-        $html .= __('Its smart enough to distinguish between scripts and css.', 'wbfy-icon-grid-it') . ' ';
-        $html .= __('In most situations though, the default will be fine.', 'wbfy-icon-grid-it') . ' ';
-        $html = esc_html($html);
-        echo '<p>' . $html . '</p>';
+        echo '<div>';
+        esc_html_e('Icon Grid It! downloads the icon font it uses from a content delivery network.') . ' ';
+        echo '</div><div>';
+        esc_html_e('You can change the link used below.', 'wbfy-icon-grid-it') . ' ';
+        esc_html_e('Its smart enough to distinguish between scripts and css.', 'wbfy-icon-grid-it') . ' ';
+        echo '</div><div>';
+        esc_html_e('In most situations though, the default will be fine.', 'wbfy-icon-grid-it') . ' ';
+        echo '</div>';
     }
 
     public function fieldCDNLink()
