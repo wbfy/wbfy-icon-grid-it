@@ -27,7 +27,8 @@ class wbfy_igi_Widget extends WP_Widget
     public function init()
     {
         register_widget($this);
-        wbfy_igi_Libs_WordPress_Functions::registerColorPicker();
+        wp_enqueue_style('wp-color-picker');
+        wp_enqueue_script('wp-color-picker');
     }
 
     /**
@@ -51,7 +52,7 @@ class wbfy_igi_Widget extends WP_Widget
      */
     public function form($instance)
     {
-        echo wbfy_igi_Libs_WordPress_Functions::render(
+        echo wbfy_igi_Libs_Html::render(
             'skin/customiser/widget.php',
             array(
                 'options' => wbfy_igi_Options::getInstance()->settings,

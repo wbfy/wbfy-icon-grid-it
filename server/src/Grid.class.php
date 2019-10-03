@@ -18,7 +18,7 @@ class wbfy_igi_Grid
         wbfy_igi_Grid::registerFrontEndStyle();
         wbfy_igi_Grid::registerFont();
 
-        return wbfy_igi_Libs_WordPress_Functions::render(
+        return wbfy_igi_Libs_Html::render(
             'skin/grid.php',
             array(
                 'content' => $instance,

@@ -1,5 +1,5 @@
 <?php
-class wbfy_igi_Libs_Html_Inputs
+class wbfy_igi_Libs_Html
 {
     public static function selectRange($min, $max, $attrs = array(), $inc = 1)
     {
@@ -55,5 +55,15 @@ class wbfy_igi_Libs_Html_Inputs
             }
         }
         return $html;
+    }
+
+    /**
+     * Render 'template' file with $data
+     */
+    public static function render($template, $data = array())
+    {
+        ob_start();
+        include WBFY_IGI_PLUGIN_DIR . 'server/' . $template;
+        return ob_get_clean();
     }
 }

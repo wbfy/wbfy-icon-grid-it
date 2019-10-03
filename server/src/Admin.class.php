@@ -115,7 +115,7 @@ class wbfy_igi_Admin
     {
         $options = wbfy_igi_Options::getInstance();
 
-        echo wbfy_igi_Libs_Html_Inputs::inputText(
+        echo wbfy_igi_Libs_Html::inputText(
             array(
                 'id'        => 'wbfy_igi_cdn_link',
                 'name'      => 'wbfy_igi[cdn][link]',
@@ -141,7 +141,7 @@ class wbfy_igi_Admin
     {
         $options = wbfy_igi_Options::getInstance();
 
-        echo wbfy_igi_Libs_Html_Inputs::inputCheck(
+        echo wbfy_igi_Libs_Html::inputCheck(
             array(
                 'id'    => 'wbfy_igi_config_data_on_deactivate',
                 'name'  => 'wbfy_igi[config_data][on_deactivate]',
@@ -157,7 +157,7 @@ class wbfy_igi_Admin
     {
         $options = wbfy_igi_Options::getInstance();
 
-        echo wbfy_igi_Libs_Html_Inputs::inputCheck(
+        echo wbfy_igi_Libs_Html::inputCheck(
             array(
                 'id'    => 'wbfy_igi_config_data_on_delete',
                 'name'  => 'wbfy_igi[config_data][on_delete]',
@@ -195,7 +195,7 @@ class wbfy_igi_Admin
             WBFY_IGI_VERSION
         );
 
-        echo wbfy_igi_Libs_WordPress_Functions::render(
+        echo wbfy_igi_Libs_Html::render(
             'skin/admin.php',
             wbfy_igi_Options::getInstance()->settings
         );
