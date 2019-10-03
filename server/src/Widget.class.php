@@ -14,9 +14,9 @@ class wbfy_igi_Widget extends WP_Widget
     {
         parent::__construct(
             'wbfy_igi_icon_grid_list_it', // Base ID
-            __('Icon Grid It!', 'wbfy-icon-grid-it'), // Widget name in UI
+            esc_html__('Icon Grid It!', 'wbfy-icon-grid-it'), // Widget name in UI
             array(
-                'description' => __('Add an icon feature grid', 'wbfy-icon-grid-it'), // Description in UI
+                'description' => esc_html__('Add an icon feature grid', 'wbfy-icon-grid-it'), // Description in UI
             )
         );
     }

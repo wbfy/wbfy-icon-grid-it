@@ -68,9 +68,8 @@ class wbfy_igi_Options
                 'on_deactivate' => 0,
                 'on_delete'     => 1,
             ),
-            'fonts'       => array(
-                'fa_kit_code' => '',
-                'cdn_link'    => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css',
+            'cdn'         => array(
+                'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css',
             ),
         );
     }

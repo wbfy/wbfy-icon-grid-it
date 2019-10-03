@@ -35,15 +35,14 @@ class wbfy_igi_Block
             WBFY_IGI_VERSION
         );
 
+        wbfy_igi_Grid::registerFont();
+
         register_block_type(
             'wbfy/icon-grid-it',
             array(
                 'editor_script' => 'wbfy-icon-grid-it-block-js',
                 'editor_style'  => 'wbfy-icon-grid-it-block-editor-css',
-                'style'         => array(
-                    wbfy_igi_Grid::registerFrontEndStyle(false),
-                    wbfy_igi_Grid::registerFont(false),
-                ),
+                'style'         => wbfy_igi_Grid::registerFrontEndStyle(false),
             )
         );
     }

@@ -6,6 +6,8 @@
  */
 class wbfy_igi_Grid
 {
+    const FONT_ID = 'wbfy-icon-grid-it-font-cdn';
+
     /**
      * Display icon grid
      *
@@ -40,16 +42,25 @@ class wbfy_igi_Grid
         return $template;
     }
 
+    /**
+     * Load font from CDN
+     * The link can be a .js script or css file
+     */
     public static function registerFont($enqueue = true)
     {
-        $id      = 'wbfy-icon-grid-it-font-cdn';
-        $options = wbfy_igi_Options::getInstance()->settings;
-        wp_register_style($id, $options['fonts']['cdn_link']);
+        $options = wbfy_igi_Options::getInstance();
 
-        if ($enqueue) {
-            wp_enqueue_style($id);
+        if (preg_match('/\.js$/', $options->settings['fonts']['cdn_link'])) {
+            wp_register_script(self::FONT_ID, $options->settings['fonts']['cdn_link']);
+            if ($enqueue) {
+                wp_enqueue_script(self::FONT_ID);
+            }
+        } else {
+            wp_register_style(self::FONT_ID, $options->settings['fonts']['cdn_link']);
+            if ($enqueue) {
+                wp_enqueue_style(self::FONT_ID);
+            }
         }
-
         return $id;
     }
 

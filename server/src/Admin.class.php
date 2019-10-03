@@ -42,8 +42,8 @@ class wbfy_igi_Admin
     public function addToMenu()
     {
         add_options_page(
-            __('Icon Grid It!', 'wbfy-icon-grid-it'), // Page title
-            __('Icon Grid It!', 'wbfy-icon-grid-it'), // Menu title
+            esc_html__('Icon Grid It!', 'wbfy-icon-grid-it'), // Page title
+            esc_html__('Icon Grid It!', 'wbfy-icon-grid-it'), // Menu title
             'manage_options', // Capability/permission required
             'wbfy-icon-grid-it', // Page slug (unique id)
             array($this, 'render') // Renderer callback
@@ -57,39 +57,31 @@ class wbfy_igi_Admin
     {
         // Font settings section
         add_settings_section(
-            'wbfy_igi_fonts',
-            __('Fonts', 'wbfy-icon-grid-it'),
-            array($this, 'sectionConfigData'),
+            'wbfy_igi_cdn',
+            esc_html__('Content Delivery Network', 'wbfy-icon-grid-it'),
+            array($this, 'sectionCDN'),
             'wbfy_igi_options'
         );
 
         add_settings_field(
-            'wbfy_igi_fonts_fa_kit_code',
-            __('FA Kit Code', 'wbfy-icon-grid-it'),
-            array($this, 'fieldFontsFAKitCode'),
+            'wbfy_igi_cdn_link',
+            esc_html__('Link', 'wbfy-icon-grid-it'),
+            array($this, 'fieldsCDNLink'),
             'wbfy_igi_options',
-            'wbfy_igi_fonts'
-        );
-
-        add_settings_field(
-            'wbfy_igi_fonts_cdn_link',
-            __('Font CDN Link', 'wbfy-icon-grid-it'),
-            array($this, 'fieldFontsCDNLink'),
-            'wbfy_igi_options',
-            'wbfy_igi_fonts'
+            'wbfy_igi_cdn'
         );
 
         // Config data settings fields
         add_settings_section(
             'wbfy_igi_config_data',
-            __('Configuration Data', 'wbfy-icon-grid-it'),
+            esc_html__('Configuration Data', 'wbfy-icon-grid-it'),
             array($this, 'sectionConfigData'),
             'wbfy_igi_options'
         );
 
         add_settings_field(
             'wbfy_igi_config_data_on_deactivate',
-            __('Deactivated', 'wbfy-icon-grid-it'),
+            esc_html__('Deactivated', 'wbfy-icon-grid-it'),
             array($this, 'fieldConfigDataOnDeactivate'),
             'wbfy_igi_options',
             'wbfy_igi_config_data'
@@ -97,7 +89,7 @@ class wbfy_igi_Admin
 
         add_settings_field(
             'wbfy_igi_config_data_on_delete',
-            __('Deleted', 'wbfy-icon-grid-it'),
+            esc_html__('Deleted', 'wbfy-icon-grid-it'),
             array($this, 'fieldConfigDataOnDelete'),
             'wbfy_igi_options',
             'wbfy_igi_config_data'
@@ -107,37 +99,28 @@ class wbfy_igi_Admin
     /**
      * Render Config Data options header
      */
-    public function sectionFonts()
+    public function sectionCDN()
     {
-        echo '<p>' . __('Use custom font-awesome kit', 'wbfy-icon-grid-it') . '</p>';
+        $
+        $html = __('Icon Grid It! will download the icon font it uses from a content delivery network.') . ' ';
+        $html .= __('You can change the link used below.', 'wbfy-icon-grid-it') . ' ';
+        $html .= __('Its smart enough to distinguish between scripts and css.', 'wbfy-icon-grid-it') . ' ';
+        $html .= __('In most situations though, the default will be fine.', 'wbfy-icon-grid-it') . ' ';
+        $html = esc_html($html);
+        echo '<p>' . $html . '</p>';
     }
 
-    public function fieldFontsFAKitCode()
+    public function fieldCDNLink()
     {
         $options = wbfy_igi_Options::getInstance();
 
         echo wbfy_igi_Libs_Html_Inputs::inputText(
             array(
-                'id'        => 'wbfy_igi_fonts_fa_kit_code',
-                'name'      => 'wbfy_igi[fonts][fa_kit_code]',
-                'maxlength' => '10',
-                'size'      => '10',
-                'value'     => $options->settings['fonts']['fa_kit_code'],
-            )
-        );
-    }
-
-    public function fieldFontsCDNLink()
-    {
-        $options = wbfy_igi_Options::getInstance();
-
-        echo wbfy_igi_Libs_Html_Inputs::inputText(
-            array(
-                'id'        => 'wbfy_igi_fonts_cdn_link',
-                'name'      => 'wbfy_igi[fonts][cdn_link]',
+                'id'        => 'wbfy_igi_cdn_link',
+                'name'      => 'wbfy_igi[cdn][link]',
                 'maxlength' => '150',
                 'size'      => '80',
-                'value'     => $options->settings['fonts']['cdn_link'],
+                'value'     => $options->settings['cdn']['link'],
             )
         );
     }
@@ -147,7 +130,7 @@ class wbfy_igi_Admin
      */
     public function sectionConfigData()
     {
-        echo '<p>' . __('Remove all configuration data for this plugin when it is:', 'wbfy-icon-grid-it') . '</p>';
+        echo '<p>' . esc_html__('Remove all configuration data for this plugin when it is:', 'wbfy-icon-grid-it') . '</p>';
     }
 
     /**
@@ -190,8 +173,7 @@ class wbfy_igi_Admin
         $input['config_data']['on_deactivate'] = (isset($input['config_data']['on_deactivate'])) ? true : false;
         $input['config_data']['on_delete']     = (isset($input['config_data']['on_delete'])) ? true : false;
 
-        $input['fonts']['fa_kit_code'] = wbfy_igi_Libs_Sanitise::AlphaNumeric($input['fonts']['fa_kit_code']);
-        $input['fonts']['cdn_link']    = esc_url_raw($input['fonts']['cdn_link']);
+        $input['cdn']['link'] = esc_url_raw($input['cdn']['link']);
 
         return $input;
     }
@@ -202,7 +184,7 @@ class wbfy_igi_Admin
     public function render()
     {
         if (!current_user_can('update_plugins')) {
-            wp_die(__('You do not have sufficient permissions to access this page.', 'wbfy-icon-grid-it'));
+            wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'wbfy-icon-grid-it'));
         }
 
         wp_enqueue_style(
