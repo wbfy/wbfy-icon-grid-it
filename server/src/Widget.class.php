@@ -27,7 +27,7 @@ class wbfy_igi_Widget extends WP_Widget
     public function init()
     {
         register_widget($this);
-        wbfy_igi_Libs_WordPress_Functions::enqueueColorPicker();
+        wbfy_igi_Libs_WordPress_Functions::registerColorPicker();
     }
 
     /**

@@ -12,35 +12,15 @@ class wbfy_igi_Libs_WordPress_Functions
     }
 
     /**
-     * Enqueue jQuery
-     */
-    public static function enqueueJQuery($style = 'smoothness')
-    {
-        // Ensure the jquery ui css is the same version as jquery ui itself
-        global $wp_scripts;
-        $jq = $wp_scripts->registered['jquery-ui-core']->ver;
-        $jq = (is_null($jq)) ? '1.12.1' : $jq;
-        wp_enqueue_style(
-            'jquery-style',
-            '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jq . '/themes/' . $style . '/jquery-ui.css'
-        );
-    }
-
-    /**
      * enqueue wp color picker
      */
-    public static function enqueueColorPicker()
+    public static function registerColorPicker($enqueue = true)
     {
-        self::enqueueJQuery();
-        wp_enqueue_style('wp-color-picker');
-        wp_enqueue_script('wp-color-picker');
-    }
-
-    /*
-     * Enqueue jQuery UI date picker
-     */
-    public static function enqueueDatePicker()
-    {
-        wp_enqueue_script('jquery-ui-datepicker');
+        wp_register_style('wp-color-picker');
+        wp_reister_script('wp-color-picker');
+        if ($enqueue) {
+            wp_enqueue_style('wp-color-picker');
+            wp_enqueue_script('wp-color-picker');
+        }
     }
 }
