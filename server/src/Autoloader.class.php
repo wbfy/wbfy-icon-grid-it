@@ -21,7 +21,7 @@ class wbfy_igi_Autoloader
             return;
         }
 
-        $file = WBFY_IGI_PLUGIN_DIR . 'server/php/' . str_replace(array('wbfy_igi_', '_'), array('', '/'), $class) . ".class.php";
+        $file = WBFY_IGI_PLUGIN_DIR . 'server/src/' . str_replace(array('wbfy_igi_', '_'), array('', '/'), $class) . ".class.php";
         if (file_exists($file)) {
             require_once $file;
             return true;

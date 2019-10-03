@@ -39,9 +39,9 @@ class wbfy_igi_Widget extends WP_Widget
     public function widget($args, $instance)
     {
         if (empty($instance)) {
-            $instance = wbfy_igi_ContentTemplate::get($instance);
+            $instance = wbfy_igi_Grid::template();
         }
-        echo wbfy_igi_Content::displayGrid($instance);
+        echo wbfy_igi_Grid::display($instance);
     }
 
     /**
@@ -69,14 +69,15 @@ class wbfy_igi_Widget extends WP_Widget
      */
     public function update($new_instance, $old_instance)
     {
-        $instance                = wbfy_igi_ContentTemplate::get($instance);
-        $instance['title']       = (isset($new_instance['title'])) ? sanitise_text_field($new_instance['title']) : '';
+        $instance = wbfy_igi_Grid::template();
+
+        $instance['title']       = (isset($new_instance['title'])) ? sanitize_text_field($new_instance['title']) : '';
         $instance['title_align'] = (isset($new_instance['title_align'])) ? wbfy_igi_Libs_Sanitise::align($new_instance['title_align']) : '';
         $instance['icon_color']  = (isset($new_instance['icon_color'])) ? wbfy_igi_Libs_Sanitise::colorHex($new_instance['icon_color'], WBFY_DEFAULT_ICON_COLOR) : '';
 
         for ($i = 1; $i <= WBFY_IGI_MAX_ITEMS; $i++) {
-            $instance['item' . $i . '_icon'] = (isset($new_instance['item' . $i . '_icon'])) ? sanitise_html_class($new_instance['item' . $i . '_icon']) : '';
-            $instance['item' . $i . '_text'] = (isset($new_instance['item' . $i . '_text'])) ? sanitise_text_field($new_instance['item' . $i . '_text']) : '';
+            $instance['item' . $i . '_icon'] = (isset($new_instance['item' . $i . '_icon'])) ? sanitize_html_class($new_instance['item' . $i . '_icon']) : '';
+            $instance['item' . $i . '_text'] = (isset($new_instance['item' . $i . '_text'])) ? sanitize_text_field($new_instance['item' . $i . '_text']) : '';
         }
         return $instance;
     }

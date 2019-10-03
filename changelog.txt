@@ -2,3 +2,8 @@
 * Initial release
 = 1.1.0 =
 - Added support for Gutenberg blocks
+= 1.2.0 =
+- Added support for font-awesome icon kits
+= 1.2.1 =
+- Changed default fontawesome to v5.11.2
+- Changed default CDN to Cloudflare

@@ -9,7 +9,7 @@ class wbfy_igi_Admin
     {
         register_setting(
             'wbfy_igi_options', // Option group.
-            'wbfy_gli', // Option name (in wp_options)
+            'wbfy_igi', // Option name (in wp_options)
             array($this, 'validate') // Sanitation callback
         );
         add_filter('plugin_action_links_wbfy-icon-grid-it/wbfy-icon-grid-it.php', array($this, 'pluginPageSettingsLink'));
@@ -55,6 +55,30 @@ class wbfy_igi_Admin
      */
     private function registerForm()
     {
+        // Font settings section
+        add_settings_section(
+            'wbfy_igi_fonts',
+            __('Fonts', 'wbfy-icon-grid-it'),
+            array($this, 'sectionConfigData'),
+            'wbfy_igi_options'
+        );
+
+        add_settings_field(
+            'wbfy_igi_fonts_fa_kit_code',
+            __('FA Kit Code', 'wbfy-icon-grid-it'),
+            array($this, 'fieldFontsFAKitCode'),
+            'wbfy_igi_options',
+            'wbfy_igi_fonts'
+        );
+
+        add_settings_field(
+            'wbfy_igi_fonts_cdn_link',
+            __('Font CDN Link', 'wbfy-icon-grid-it'),
+            array($this, 'fieldFontsCDNLink'),
+            'wbfy_igi_options',
+            'wbfy_igi_fonts'
+        );
+
         // Config data settings fields
         add_settings_section(
             'wbfy_igi_config_data',
@@ -83,6 +107,44 @@ class wbfy_igi_Admin
     /**
      * Render Config Data options header
      */
+    public function sectionFonts()
+    {
+        echo '<p>' . __('Use custom font-awesome kit', 'wbfy-icon-grid-it') . '</p>';
+    }
+
+    public function fieldFontsFAKitCode()
+    {
+        $options = wbfy_igi_Options::getInstance();
+
+        echo wbfy_igi_Libs_Html_Inputs::inputText(
+            array(
+                'id'        => 'wbfy_igi_fonts_fa_kit_code',
+                'name'      => 'wbfy_igi[fonts][fa_kit_code]',
+                'maxlength' => '10',
+                'size'      => '10',
+                'value'     => $options->settings['fonts']['fa_kit_code'],
+            )
+        );
+    }
+
+    public function fieldFontsCDNLink()
+    {
+        $options = wbfy_igi_Options::getInstance();
+
+        echo wbfy_igi_Libs_Html_Inputs::inputText(
+            array(
+                'id'        => 'wbfy_igi_fonts_cdn_link',
+                'name'      => 'wbfy_igi[fonts][cdn_link]',
+                'maxlength' => '150',
+                'size'      => '80',
+                'value'     => $options->settings['fonts']['cdn_link'],
+            )
+        );
+    }
+
+    /**
+     * Render Config Data options header
+     */
     public function sectionConfigData()
     {
         echo '<p>' . __('Remove all configuration data for this plugin when it is:', 'wbfy-icon-grid-it') . '</p>';
@@ -94,10 +156,11 @@ class wbfy_igi_Admin
     public function fieldConfigDataOnDeactivate()
     {
         $options = wbfy_igi_Options::getInstance();
+
         echo wbfy_igi_Libs_Html_Inputs::inputCheck(
             array(
                 'id'    => 'wbfy_igi_config_data_on_deactivate',
-                'name'  => 'wbfy_gli[config_data][on_deactivate]',
+                'name'  => 'wbfy_igi[config_data][on_deactivate]',
                 'value' => $options->settings['config_data']['on_deactivate'],
             )
         );
@@ -109,10 +172,11 @@ class wbfy_igi_Admin
     public function fieldConfigDataOnDelete()
     {
         $options = wbfy_igi_Options::getInstance();
+
         echo wbfy_igi_Libs_Html_Inputs::inputCheck(
             array(
                 'id'    => 'wbfy_igi_config_data_on_delete',
-                'name'  => 'wbfy_gli[config_data][on_delete]',
+                'name'  => 'wbfy_igi[config_data][on_delete]',
                 'value' => $options->settings['config_data']['on_delete'],
             )
         );
@@ -125,6 +189,10 @@ class wbfy_igi_Admin
     {
         $input['config_data']['on_deactivate'] = (isset($input['config_data']['on_deactivate'])) ? true : false;
         $input['config_data']['on_delete']     = (isset($input['config_data']['on_delete'])) ? true : false;
+
+        $input['fonts']['fa_kit_code'] = wbfy_igi_Libs_Sanitise::AlphaNumeric($input['fonts']['fa_kit_code']);
+        $input['fonts']['cdn_link']    = esc_url_raw($input['fonts']['cdn_link']);
+
         return $input;
     }
 
