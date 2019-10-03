@@ -3,7 +3,7 @@
  * Icon Grid It!
  * Shortcode handler
  */
-class wbfy_igi_Shortcodes
+class wbfy_igi_Shortcode
 {
     private $content = [];
 
@@ -23,7 +23,8 @@ class wbfy_igi_Shortcodes
      */
     public function shortcodeIconGrid($attrs)
     {
-        $content                = wbfy_igi_ContentTemplate::get();
+        $content = wbfy_igi_Grid::template();
+
         $content['title']       = (!empty($attrs['title'])) ? $attrs['title'] : '';
         $content['title_align'] = (!empty($attrs['title_align'])) ? $attrs['title_align'] : 'left';
         $content['icon_color']  = (!empty($attrs['icon_color'])) ? $attrs['icon_color'] : WBFY_DEFAULT_ICON_COLOR;
@@ -32,6 +33,6 @@ class wbfy_igi_Shortcodes
             $content['item' . $i . '_icon'] = (!empty($attrs['icon' . $i])) ? $attrs['icon' . $i] : '';
             $content['item' . $i . '_text'] = (!empty($attrs['text' . $i])) ? $attrs['text' . $i] : '';
         }
-        return wbfy_igi_Content::displayGrid($content);
+        return wbfy_igi_Grid::display($content);
     }
 }

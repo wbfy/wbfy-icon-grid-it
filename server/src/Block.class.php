@@ -7,28 +7,12 @@
 class wbfy_igi_Block
 {
     /**
-     * Common styles
-     */
-    private function commonInit()
-    {
-        // Frontend CSS
-        wp_register_style(
-            'wbfy-icon-grid-it-frontend-css',
-            plugins_url('/wbfy-icon-grid-it/resources/css/wbfy-icon-grid-it-frontend.min.css'),
-            array('wp-blocks'),
-            WBFY_IGI_VERSION
-        );
-        wp_register_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css');
-    }
-
-    /**
      * Enqueue scripts and styles for front end
      */
     public function frontendInit()
     {
-        $this->commonInit();
-        wp_enqueue_style('wbfy-icon-grid-it-frontend-css');
-        wp_enqueue_style('font-awesome');
+        wbfy_igi_Grid::registerFrontEndStyle();
+        wbfy_igi_Grid::registerFont();
     }
 
     /**
@@ -51,14 +35,15 @@ class wbfy_igi_Block
             WBFY_IGI_VERSION
         );
 
-        $this->commonInit();
-
         register_block_type(
             'wbfy/icon-grid-it',
             array(
                 'editor_script' => 'wbfy-icon-grid-it-block-js',
                 'editor_style'  => 'wbfy-icon-grid-it-block-editor-css',
-                'style'         => array('wbfy-icon-grid-it-frontend-css', 'font-awesome'),
+                'style'         => array(
+                    wbfy_igi_Grid::registerFrontEndStyle(false),
+                    wbfy_igi_Grid::registerFont(false),
+                ),
             )
         );
     }

@@ -30,7 +30,7 @@ class wbfy_igi_Options
     public function __construct()
     {
         $this->getDefaults();
-        $settings = get_option('wbfy_gli');
+        $settings = get_option('wbfy_igi');
         if (is_array($settings)) {
             $this->settings = wbfy_igi_Libs_Arrays::extend(
                 $this->settings,
@@ -44,7 +44,7 @@ class wbfy_igi_Options
      */
     public function drop()
     {
-        delete_option('wbfy_gli');
+        delete_option('wbfy_igi');
     }
 
     /**
@@ -53,7 +53,7 @@ class wbfy_igi_Options
     public function init()
     {
         $this->getDefaults();
-        add_option('wbfy_gli', $this->settings);
+        add_option('wbfy_igi', $this->settings);
     }
 
     /**
@@ -67,6 +67,10 @@ class wbfy_igi_Options
             'config_data' => array(
                 'on_deactivate' => 0,
                 'on_delete'     => 1,
+            ),
+            'fonts'       => array(
+                'fa_kit_code' => '',
+                'cdn_link'    => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css',
             ),
         );
     }

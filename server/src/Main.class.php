@@ -18,7 +18,7 @@ class wbfy_igi_Main
         add_action('admin_menu', array(new wbfy_igi_Admin, 'addToMenu'));
 
         // Add shortcode handler
-        add_action('init', array(new wbfy_igi_Shortcodes, 'init'));
+        add_action('init', array(new wbfy_igi_Shortcode, 'init'));
 
         // Enqueue Gutenberg editor only assets
         add_action('enqueue_block_editor_assets', array(new wbfy_igi_Block, 'adminInit'));
