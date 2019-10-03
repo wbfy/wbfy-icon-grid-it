@@ -67,7 +67,7 @@ class wbfy_igi_Grid
     /**
      * Common styles
      */
-    private function enqueueFrontEndStyle($enqueue = true)
+    public static function registerFrontEndStyle($enqueue = true)
     {
         $id = 'wbfy-icon-grid-it-frontend-css';
         // Frontend CSS
