@@ -1,4 +1,4 @@
-# Icon Grid It! A Feature Grids Plugin For WordPress
+# Icon Grid It! Feature Grids Plugin For WordPress
 
 1. Provides a shortcode, customeriser widget and a Gutenberg block to display feature grids with icons
 1. By default uses font-awesome/5.11.2 to provide the icons
