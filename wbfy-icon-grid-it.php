@@ -1,9 +1,9 @@
 <?php
 /**
- * Main plugin control
+ * Icon Grid It! Feature Grids Plugin For WordPress
  *
  * @link    https://websitesbuiltforyou.com/wordpress/feature-grids-plugin-for-wordpress
- * @package A Feature Grids Plugin For WordPress
+ * @package Feature Grids Plugin For WordPress
  */
 
 /**
@@ -17,6 +17,8 @@
  * License URI: https://www.gnu.org/licenses
  * Text Domain: wbfy-icon-grid-it
  * Domain Path: /resources/languages
+ *
+ * (c) 2019 Steve Perkins, Websites Built For You
  *
  * Icon Grid It! is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free Software
