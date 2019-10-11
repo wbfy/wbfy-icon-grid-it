@@ -12,6 +12,7 @@ https://websitesbuiltforyou.com/wordpress/feature-grids-plugin-for-wordpress
 ## Installation
 You can download the pre-compiled .zip WordPress installation file at:
     https://websitesbuiltforyou.com/wordpress/feature-grids-plugin-for-wordpress
+
 Install as you would any other WordPress plugin.
 
 ## Usage
