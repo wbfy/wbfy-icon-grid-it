@@ -32,7 +32,7 @@ You can create your own font using font-awesome icon kits at:
 ## Notes
 **NB**: Remember to include the fa- prefix to icon class names
 
-##Licence
+## Licence
 This plugin is licenced under the GNU GPL 2.0 or higher licence.
 
 Copyright (c) Steve Perkins, [Websites Built For You](https://websitesbuiltforyou.com)
