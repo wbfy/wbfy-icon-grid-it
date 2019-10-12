@@ -15,7 +15,7 @@ A WordPress plugin to display grids with icons.
 https://websitesbuiltforyou.com/wordpress/feature-grids-plugin-for-wordpress
 
 ## Installation And Usage
-You can download the latest stable pre-compiled .zip WordPress installation file at:
+You can download the latest stable pre-compiled plugin installation (.zip) file at:
 
 https://websitesbuiltforyou.com/wordpress/feature-grids-plugin-for-wordpress
 
