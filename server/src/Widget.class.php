@@ -27,8 +27,6 @@ class wbfy_igi_Widget extends WP_Widget
     public function init()
     {
         register_widget($this);
-        wp_enqueue_style('wp-color-picker');
-        wp_enqueue_script('wp-color-picker');
     }
 
     /**
@@ -39,6 +37,8 @@ class wbfy_igi_Widget extends WP_Widget
      */
     public function widget($args, $instance)
     {
+        wp_enqueue_style('wp-color-picker');
+        wp_enqueue_script('wp-color-picker');
         if (empty($instance)) {
             $instance = wbfy_igi_Grid::template();
         }
