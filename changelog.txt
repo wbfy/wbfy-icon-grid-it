@@ -7,3 +7,6 @@
 = 1.2.1 =
 - Changed default fontawesome to v5.11.2
 - Changed default CDN to Cloudflare
+= 1.2.2 =
+- Moved widget resource enqueuement so not adding color-picker to frontend
+

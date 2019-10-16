@@ -12,7 +12,7 @@
  * Description: Display feature grids with icons
  * Author: Websites Built For You
  * Author URI: https://websitesbuiltforyou.com
- * Version: 1.2.1
+ * Version: 1.2.2
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses
  * Text Domain: wbfy-icon-grid-it
@@ -37,7 +37,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!class_exists('wbfy_igi_Main')) {
-    define('WBFY_IGI_VERSION', '1.2.1');
+    define('WBFY_IGI_VERSION', '1.2.2');
     define('WBFY_IGI_PLUGIN_DIR', plugin_dir_path(__FILE__));
     define('WBFY_IGI_MAX_ITEMS', 15);
     define('WBFY_DEFAULT_ICON_COLOR', '#ffa500'); // Orange
