@@ -52,7 +52,7 @@ class wbfy_igi_Widget extends WP_Widget
      */
     public function form($instance)
     {
-        echo wbfy_igi_Libs_Html::render(
+        echo wbfy_igi_Libs_Html_Inputs::render(
             'skin/customiser/widget.php',
             array(
                 'options' => wbfy_igi_Options::getInstance()->settings,

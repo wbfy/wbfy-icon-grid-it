@@ -9,4 +9,5 @@
 - Changed default CDN to Cloudflare
 = 1.2.2 =
 - Moved widget resource enqueuement so not adding color-picker to frontend
-
+= 1.2.3 =
+- Updated Libs/Html library

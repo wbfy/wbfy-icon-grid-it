@@ -14,10 +14,16 @@ gulp.task
 	(
 		'compile.plugin',
 		function (doneCallBack) {
-			gulp.src(['client/js/*.js'])
-				.pipe(concat('wbfy-icon-grid-it-block.min.js'))
-				.pipe(uglify())
-				.pipe(gulp.dest('resources/js'));
+			if (flags.production) {
+				gulp.src(['client/js/*.js'])
+					.pipe(concat('wbfy-icon-grid-it-block.min.js'))
+					.pipe(uglify())
+					.pipe(gulp.dest('resources/js'));
+			} else {
+				gulp.src(['client/js/*.js'])
+					.pipe(concat('wbfy-icon-grid-it-block.min.js'))
+					.pipe(gulp.dest('resources/js'));
+			}
 
 			gulp.src(['client/scss/admin.scss'])
 				.pipe(concat('wbfy-icon-grid-it-admin.min.css'))
