@@ -195,7 +195,7 @@ class wbfy_igi_Admin
             WBFY_IGI_VERSION
         );
 
-        echo wbfy_igi_Libs_Html_Inputs::render(
+        echo wbfy_igi_Libs_WordPress_Functions::render(
             'skin/admin.php',
             wbfy_igi_Options::getInstance()->settings
         );

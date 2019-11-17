@@ -11,3 +11,5 @@
 - Moved widget resource enqueuement so not adding color-picker to frontend
 = 1.2.3 =
 - Updated Libs/Html library
+= 1.2.4 =
+- removed wp-blocks dependencies

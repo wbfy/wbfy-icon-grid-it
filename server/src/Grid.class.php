@@ -18,7 +18,7 @@ class wbfy_igi_Grid
         wbfy_igi_Grid::registerFrontEndStyle();
         wbfy_igi_Grid::registerFont();
 
-        return wbfy_igi_Libs_Html_Inputs::render(
+        return wbfy_igi_Libs_WordPress_Functions::render(
             'skin/grid.php',
             array(
                 'content' => $instance,
@@ -74,7 +74,7 @@ class wbfy_igi_Grid
         wp_register_style(
             $id,
             plugins_url('/wbfy-icon-grid-it/resources/css/wbfy-icon-grid-it-frontend.min.css'),
-            array('wp-blocks'),
+            null,
             WBFY_IGI_VERSION
         );
 
