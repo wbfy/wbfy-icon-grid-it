@@ -1,5 +1,9 @@
 # Icon Grid It! Feature Grids Plugin For WordPress
 
+** This project has been superceded with the new and much improved Easy Icon Grid and is no longer maintained **
+
+https://github.com/wbfy/easy-icon-grid
+
 ## Synopsis
 A WordPress plugin to display grids with icons.
 
